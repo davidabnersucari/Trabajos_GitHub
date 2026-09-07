@@ -59,6 +59,24 @@
             <version>1.18.32</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.3.Final</version>
+        </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/org.glassfish.expressly/expressly -->
+        <dependency>
+            <groupId>org.glassfish.expressly</groupId>
+            <artifactId>expressly</artifactId>
+            <version>5.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
