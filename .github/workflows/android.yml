@@ -1,28 +1,42 @@
-name: Java Maven Build
+name: Generar apk
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "dev-Sesion04" ]
+  pull_request:
+    branches: [ "dev-Sesion04" ]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up JDK 21
+    - name: Setup Gluon's GraalVM
+      uses: gluonhq/setup-graalvm@v1
+
+    - name: Setup Java
       uses: actions/setup-java@v4
       with:
-        java-version: '21'
         distribution: 'temurin'
+        java-version: '21'
 
-    - name: Build with Maven inside DavidPOO
-      run: mvn clean package
-      working-directory: ./DavidPOO
+    - name: Setup Android NDK
+      uses: nttld/setup-ndk@v1
+      with:
+        ndk-version: r25b
 
-    - name: Upload app executable artifact
+    - name: Install native libraries
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libasound2-dev libavcodec-dev libavformat-dev libavutil-dev libgl1-mesa-dev libgtk-3-dev libpango1.0-dev libstdc++6 libx11-dev libxtst-dev
+
+    - name: Build APK
+      run: mvn gluonfx:build -Pandroid
+
+    - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: app-executable
-        path: DavidPOO/target/
+        name: app-android
+        path: target/gluonfx/aarch64-android/gvm/*.apk
