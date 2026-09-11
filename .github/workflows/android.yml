@@ -1,4 +1,4 @@
-name: Android CI
+name: Java Maven Build
 
 on:
   push:
@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./DavidPOO
 
     steps:
     - uses: actions/checkout@v4
@@ -16,16 +19,20 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: gradle
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+    - name: Grant execute permission for mvnw
+      run: chmod +x mvnw
 
-    - name: Build APK
-      run: ./gradlew assembleDebug
+    - name: Build with Maven
+      run: ./mvnw clean package -DskipTests
 
-    - name: Upload APK
+    - name: Upload JAR Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: app-debug
-        path: '**/build/outputs/apk/debug/*.apk'
+        name: app-executable
+        path: 'DavidPOO/target/*.jar'
+    - name: Upload JAR Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-executable
+        path: 'DavidPOO/target/*.jar'
