@@ -8,12 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./DavidPOO
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -22,9 +20,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Grant execute permission for mvnw
-        run: chmod +x mvnw
+        run: chmod +x DavidPOO/mvnw
 
       - name: Build with Maven
+        working-directory: ./DavidPOO
         run: ./mvnw clean package -DskipTests
 
       - name: Upload JAR Artifact
