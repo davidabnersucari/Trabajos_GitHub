@@ -11,6 +11,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <junit.version>5.12.1</junit.version>
         <lombok.version>1.18.36</lombok.version>
     </properties>
@@ -60,19 +62,16 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Source: https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>8.0.3.Final</version>
         </dependency>
-        <!-- Source: https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
             <version>3.0.2</version>
         </dependency>
-        <!-- Source: https://mvnrepository.com/artifact/org.glassfish.expressly/expressly -->
         <dependency>
             <groupId>org.glassfish.expressly</groupId>
             <artifactId>expressly</artifactId>
@@ -82,6 +81,7 @@
 
     <build>
         <plugins>
+            <!-- Plugin del Compilador Corregido -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -98,13 +98,14 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+
+            <!-- Plugin de JavaFX -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <executions>
                     <execution>
-                        <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>pe.edu.upeu.sysventas/pe.edu.upeu.sysventas.SysVentas</mainClass>
