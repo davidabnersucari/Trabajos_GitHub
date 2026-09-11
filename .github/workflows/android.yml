@@ -3,29 +3,28 @@ name: Java Maven Build
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch:
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
 
-      - name: Build Project
-        run: |
-          cd DavidPOO
-          chmod +x mvnw
-          ./mvnw clean package -DskipTests
+    - name: Build with Maven inside DavidPOO
+      run: mvn clean package
+      working-directory: ./DavidPOO
 
-      - name: Upload Executable
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-executable
-          path: DavidPOO/target/*.jar
+    - name: Upload app executable artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-executable
+        path: DavidPOO/target/
