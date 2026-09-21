@@ -1,15 +1,16 @@
 package pe.edu.upeu.sysventas.model;
+
 import lombok.Getter;
 import lombok.Setter;
 import pe.edu.upeu.sysventas.enums.Menus;
 import pe.edu.upeu.sysventas.enums.TipoTab;
-@Setter
+
 @Getter
+@Setter
 public class Acceso {
     String idAcceso;
     String urlAcceso;
-    String menuItemNombr;
+    String menuItemNombre;
     Menus menuNombre;
-    TipoTab nombreTap;
-
+    TipoTab nombreTab;
 }
