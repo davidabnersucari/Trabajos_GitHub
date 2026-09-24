@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.starbuckscrud.controller.ProductoController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <!-- Título -->
+    <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #00704A;" text="☕ STARBUCKS - Gestión de Productos" />
+
+    <!-- Formulario -->
+    <GridPane hgap="10.0" vgap="10.0">
+        <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label text="Categoría:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <ComboBox fx:id="cbCategoria" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Precio (S/):" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="txtPrecio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="Tamaño:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <ComboBox fx:id="cbTamano" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    </GridPane>
+
+    <!-- Botones de Acción -->
+    <HBox spacing="10.0">
+        <Button onAction="#guardarProducto" style="-fx-background-color: #00704A; -fx-text-fill: white;" text="Guardar" />
+        <Button onAction="#limpiarCampos" style="-fx-background-color: #gray;" text="Limpiar" />
+    </HBox>
+    <!-- Botones de Acción -->
+    <HBox spacing="10.0">
+        <Button onAction="#guardarProducto" style="-fx-background-color: #00704A; -fx-text-fill: white;" text="Guardar" />
+        <Button onAction="#actualizarProducto" style="-fx-background-color: #FFC72C; -fx-text-fill: black;" text="Actualizar" />
+        <Button onAction="#eliminarProducto" style="-fx-background-color: #D9534F; -fx-text-fill: white;" text="Eliminar" />
+        <Button onAction="#limpiarCampos" style="-fx-background-color: #CCCCCC;" text="Limpiar" />
+    </HBox>
+    <!-- Tabla de Productos -->
+    <TableView fx:id="tablaProductos" prefHeight="200.0">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50.0" />
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150.0" />
+            <TableColumn fx:id="colCategoria" text="Categoría" prefWidth="120.0" />
+            <TableColumn fx:id="colPrecio" text="Precio (S/)" prefWidth="100.0" />
+            <TableColumn fx:id="colTamano" text="Tamaño" prefWidth="100.0" />
+        </columns>
+    </TableView>
+</VBox>
